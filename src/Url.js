@@ -1,9 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
 
-const Url = () => {
+const Url = (props) => {
+    const [item, setItem] = useState(props.item);
     return(
         <div calssName = "Url">
-            Url 컴포넌트 만들기
+            <p id = "{item.id}">{item.title}</p>
         </div>
     )
 }

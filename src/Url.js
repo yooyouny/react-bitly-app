@@ -1,8 +1,17 @@
 import React, {useState} from "react"
-import { ListItem, ListItemText, InputBase } from "@mui/material";
+import { ListItem, ListItemText, InputBase, ListItemSecondaryAction, IconButton } from "@mui/material";
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+
+
 
 const Url = (props) => {
     const [item, setItem] = useState(props.item);
+    const deleteItem = props.deleteItem;
+
+    const deleteEventHandler = () => {
+        deleteItem(item);
+    };
+
     return(
         <ListItem>
             <ListItemText>
@@ -11,11 +20,16 @@ const Url = (props) => {
                     type="text"
                     id = {item.id}
                     name = {item.id}
-                    value = {item.title}
+                    value = {item.destination}
                     multiline = {true}
                     fullWidth = {true}
                 />
             </ListItemText>
+            <ListItemSecondaryAction>
+                <IconButton aria-label="Delete Url" onClick={deleteEventHandler}>
+                    <RemoveCircleOutlineIcon />
+                </IconButton>
+            </ListItemSecondaryAction>
         </ListItem>
     )
 

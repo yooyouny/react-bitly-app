@@ -5,20 +5,7 @@ import { Container, List, Paper } from "@mui/material";
 import AddUrl from './AddUrl';
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      id: "0",
-      destination: "Hello.com",
-      newUrl: "",
-      active: true
-    },
-    {
-      id: "1",
-      destination: "World.com",
-      newUrl: "",
-      active: true
-    },
-  ]);
+  const [items, setItems] = useState([]);
 
   const addItem = (item) => {
     item.id = "" + items.length;
@@ -28,11 +15,16 @@ function App() {
     console.log("items: ", items)
   };
 
+  const deleteItem = (item) => {
+    const newItems = items.filter(e => e.id !== item.id);
+    setItems([...newItems]);
+  }
+
   let UrlItems = items.length > 0 && (
     <Paper stype={{margin: 16}}>
       <List>
         {items.map((item) => (
-          <Url item={item} key={item.id} />
+          <Url item={item} key={item.id} deleteItem={deleteItem}/>
         ))}
       </List>
     </Paper>

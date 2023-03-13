@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 
 const AddUrl = (props) => {
-    const [item, setItem] = useState({ destination: "" });
+    const [item, setItem] = useState({ destination: "", newUrl: ""});
     const addItem = props.addItem;
 
     const onButtonClick = () => {
         addItem(item);
-        setItem({ destination : "" })
+        setItem({ destination : item.destination, newUrl : item.newUrl})
     }
-    
+
     const onInputChange = (e) => {
         setItem({ destination : e.target.value});
-        console.log(item);
+        console.log(item)
     }
 
     const enterKeyEventHandler = (e) => {

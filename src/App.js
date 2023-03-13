@@ -1,40 +1,62 @@
 import './App.css';
 import Url from './Url';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, List, Paper } from "@mui/material";
 import AddUrl from './AddUrl';
+import {call} from './service/ApiService'
 
 function App() {
   const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    call("/url", "GET", null)
+    .then((response) => setItems(response.data));
+  }, []);
+
   const addItem = (item) => {
-    item.id = "" + items.length;
-    item.active = false;
-    //레퍼런스를 기준으로 랜더링 되기 때문에 업데이트는 setItems에서 새 배열 추가로 
-    setItems([...items, item]);
-    console.log("items: ", items)
-  };
+    const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/;
+    if (!urlRegex.test(item.destination)) {
+      alert('Invalid destination URL format');
+      return;
+    }
+
+    call("/url", "POST", item)
+    .then((response) => {
+      setItems([...items, response]);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+   };
 
   const deleteItem = (item) => {
-    const newItems = items.filter(e => e.id !== item.id);
-    setItems([...newItems]);
-  }
+    call("/url", "DELETE", item)
+    .then((response) => setItems(response.data));
+  };
 
-  let UrlItems = items.length > 0 && (
-    <Paper stype={{margin: 16}}>
+  let UrlItems = items && items.length > 0 && (
+    <Paper style={{ margin: 16 }}>
       <List>
         {items.map((item) => (
-          <Url item={item} key={item.id} deleteItem={deleteItem}/>
+          <Url
+            item={item}
+            key={item.id}
+            deleteItem={deleteItem}
+          />
         ))}
       </List>
     </Paper>
   );
+
+  if (items === null) {
+  UrlItems = null;
+}
   // 초기화 한 item props 사용해 매개변수로 넘기기 
   return (
     <div className='App'>
       <Container maxWidth="md">
         <AddUrl addItem = {addItem} />
-        <div className='UrlList'>{UrlItems}</div>
+        <div className='UrlList'> {UrlItems}</div>
       </Container>
     </div>
   );

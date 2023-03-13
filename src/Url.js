@@ -12,9 +12,22 @@ const Url = (props) => {
         deleteItem(item);
     };
 
+    const onInputChange = (e) => {
+        setItem(e.target.value)
+    }
+
     return(
         <ListItem>
             <ListItemText>
+                <InputBase
+                    inputProps={{"aria-label": "naked"}}
+                    type="text"
+                    id = {item.id}
+                    name = {item.id}
+                    value = {item.newUrl}
+                    multiline = {true}
+                    fullWidth = {true}
+                />
                 <InputBase
                     inputProps={{"aria-label": "naked"}}
                     type="text"
@@ -25,6 +38,7 @@ const Url = (props) => {
                     fullWidth = {true}
                 />
             </ListItemText>
+
             <ListItemSecondaryAction>
                 <IconButton aria-label="Delete Url" onClick={deleteEventHandler}>
                     <RemoveCircleOutlineIcon />

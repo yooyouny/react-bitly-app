@@ -30,8 +30,6 @@ export function call(api, method, request) {
     console.error(error);
     if(error.status === HttpStatus.CONFLICT) { 
         alert('Looks like this destination is already used for another short link');
-    }else{
-        alert('Occurs server error')
     }
     throw error;
   });

@@ -1,16 +1,17 @@
 import './App.css';
 import Url from './Url';
 import React, { useState, useEffect } from "react";
-import { Container, List, Paper } from "@mui/material";
+import { Container, List, Paper, Box, TextField, Typography } from "@mui/material";
 import AddUrl from './AddUrl';
-import {call} from './service/ApiService'
+import {call} from './service/ApiService';
+import { margin } from '@mui/system';
 
 function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     call("/url", "GET", null)
-    .then((response) => setItems(response.data));
+    .then((response) => setItems(response));
   }, []);
 
   const addItem = (item) => {
@@ -35,6 +36,10 @@ function App() {
     .then((response) => setItems(response.data));
   };
 
+  const handleLogoClick = () => {
+    window.location.href = 'http://localhost:3000';
+  };
+
   let UrlItems = items && items.length > 0 && (
     <Paper style={{ margin: 16 }}>
       <List>
@@ -52,10 +57,16 @@ function App() {
   if (items === null) {
   UrlItems = null;
 }
-  // 초기화 한 item props 사용해 매개변수로 넘기기 
+ 
   return (
     <div className='App'>
       <Container maxWidth="md">
+        <Typography 
+          class="App-logo" 
+          variant='h1' 
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer' }}>bit.ly
+        </Typography>
         <AddUrl addItem = {addItem} />
         <div className='UrlList'> {UrlItems}</div>
       </Container>

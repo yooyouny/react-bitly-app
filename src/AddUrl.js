@@ -24,7 +24,9 @@ const AddUrl = (props) => {
     return (
         <Grid container style={{ marginTop: 20 }}>
             <Grid xs = {11} md = {11} item style={{ paddingRight: 16 }}>
-                <TextField placeholder="http://www.my_long_url.com" fullWidth 
+                <TextField placeholder="http://www.my_long_url.com" 
+                    fullWidth
+                    color="secondary"
                     onChange={onInputChange} 
                     onKeyPress={enterKeyEventHandler}
                     value={item.destination}/>

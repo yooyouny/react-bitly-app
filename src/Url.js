@@ -1,6 +1,7 @@
 import React, {useState} from "react"
-import { ListItem, ListItemText, InputBase, ListItemSecondaryAction, IconButton } from "@mui/material";
+import { Box, ListItem, ListItemText, InputBase, ListItemSecondaryAction, IconButton } from "@mui/material";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import './App.css'
 
 
 
@@ -17,6 +18,7 @@ const Url = (props) => {
     }
 
     return(
+        <Box sx={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
         <ListItem>
             <ListItemText>
                 <InputBase
@@ -45,6 +47,7 @@ const Url = (props) => {
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
+        </Box>
     )
 
 }

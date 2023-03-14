@@ -14,7 +14,8 @@ function App() {
   }, []);
 
   const addItem = (item) => {
-    const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/;
+    const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?(\?.*)?(#.*)?$/;
+
     if (!urlRegex.test(item.destination)) {
       alert('Invalid destination URL format');
       return;

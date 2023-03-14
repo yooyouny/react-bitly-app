@@ -33,7 +33,11 @@ function App() {
 
   const deleteItem = (item) => {
     call("/url", "DELETE", item)
-    .then((response) => setItems(response.data));
+    .then((response) => setItems(response));
+  };
+
+  const handleLogoClick = () => {
+    window.location.href = 'http://localhost:3000';
   };
 
   const handleLogoClick = () => {

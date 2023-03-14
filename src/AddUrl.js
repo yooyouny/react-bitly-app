@@ -7,7 +7,7 @@ const AddUrl = (props) => {
 
     const onButtonClick = () => {
         addItem(item);
-        setItem({ destination : item.destination, newUrl : item.newUrl})
+        setItem({ destination : "", newUrl : ""});
     }
 
     const onInputChange = (e) => {

@@ -12,11 +12,7 @@ const Url = (props) => {
     const deleteEventHandler = () => {
         deleteItem(item);
     };
-
-    const onInputChange = (e) => {
-        setItem(e.target.value)
-    }
-
+      
     const onCopyClick = () => {
         copy(item.newUrl); // 클립보드에 item.newUrl 값을 복사합니다.
     }

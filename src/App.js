@@ -10,8 +10,9 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    call("/url", "GET", null)
-    .then((response) => setItems(response));
+    call("/url", "GET", null).then((response) => {
+      setItems(response);
+    });
   }, []);
 
   const addItem = (item) => {
@@ -31,13 +32,13 @@ function App() {
     });
    };
 
-  const deleteItem = (item) => {
+   const deleteItem = (item) => {
     call("/url", "DELETE", item)
     .then((response) => setItems(response));
   };
-
+ 
   const handleLogoClick = () => {
-    window.location.href = 'http://localhost:3000';
+    window.location.href = 'http://15.164.165.157:8080/';
   };
 
   let UrlItems = items && items.length > 0 && (

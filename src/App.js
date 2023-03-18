@@ -40,10 +40,6 @@ function App() {
     window.location.href = 'http://localhost:3000';
   };
 
-  const handleLogoClick = () => {
-    window.location.href = 'http://localhost:3000';
-  };
-
   let UrlItems = items && items.length > 0 && (
     <Paper style={{ margin: 16 }}>
       <List>
